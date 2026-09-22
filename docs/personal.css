@@ -1,0 +1,186 @@
+/* Personal layouts use the shared palette in colors.css. */
+.ui-icon { width: 24px; height: 24px; flex: none; }
+.site-header nav a { position: relative; }
+.site-header nav a::after {
+  content: ''; position: absolute; inset: auto 0 4px; height: 2px;
+  background: var(--link); transform: scaleX(0); transform-origin: left;
+  transition: transform .3s var(--ease);
+}
+.site-header nav a:hover::after, .site-header nav a:focus-visible::after { transform: scaleX(1); }
+.wordmark, .site-header nav a, .brand-note { font-family: var(--sans); font-weight: 500; }
+.wordmark { position: relative; font-size: 16px; letter-spacing: .16em; line-height: 1.2; padding-right: 34px; white-space: nowrap; }
+.site-header nav a, .brand-note { letter-spacing: .08em; }
+.site-header nav a span { letter-spacing: normal; }
+.wordmark > .brand-dog { position: absolute; top: 1px; right: 0; display: inline-flex; margin: 0; font-size: 0; line-height: 0; color: var(--link); transform-origin: 50% 85%; transition: transform .3s var(--ease); }
+.brand-dog .ui-icon { display: block; width: 32px; height: 24px; }
+.wordmark:hover > .brand-dog { transform: rotate(-8deg); }
+.editorial-emphasis { color: var(--caramel); font-weight: 700; }
+.hero { grid-template-columns: 7fr 5fr; gap: 56px; }
+.hero-copy > .eyebrow { display: inline-block; padding: 4px 10px; color: var(--ink); background: var(--ivory); border-left: 2px solid var(--taupe); }
+.hero h1 { color: var(--ink); font-size: clamp(64px, 7.2vw, 104px); letter-spacing: -.06em; line-height: 1.15; }
+.hero h1 > .intro-alias { color: var(--muted); font: 500 20px/1 var(--sans); letter-spacing: .08em; margin-left: 24px; }
+.hero-english { color: var(--ink); }
+.hobby-block { margin-top: 24px; max-width: 480px; }
+.hobby-block > .eyebrow { font-size: 9px; }
+.hobby-interests { display: flex; flex-wrap: wrap; gap: 12px 28px; list-style: none; margin: 16px 0 0; padding: 0; }
+.hobby-interests li { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--muted); }
+.hobby-interests .ui-icon { width: 20px; height: 20px; }
+.hobby-link {
+  display: flex; gap: 12px; align-items: center; max-width: 480px;
+  margin-top: 10px; padding: 12px; color: var(--ink); background: var(--ivory);
+  border: 1px solid var(--line); text-decoration: none;
+  transition: background .25s, transform .3s var(--ease), box-shadow .3s;
+}
+.hobby-icon { flex: none; display: flex; align-items: center; padding: 6px; color: var(--ink); background: transparent; }
+.hobby-link small { display: block; font-size: 11px; line-height: 1.6; color: var(--muted); margin-top: 3px; }
+.hobby-link strong { display: block; font-size: 15px; margin-top: 3px; white-space: nowrap; }
+.hobby-link strong span { font-size: 11px; font-weight: 400; margin-left: 10px; }
+.hobby-arrow { margin-left: auto; font-size: 22px; transition: transform .3s var(--ease); }
+.hobby-link img { width: 70px; height: 56px; object-fit: cover; flex: none; }
+.hobby-link:hover { background: var(--ivory); transform: translateY(-3px); box-shadow: var(--paper-shadow); }
+.hobby-link:hover .hobby-arrow { transform: translate(3px, -3px); }
+
+.portrait-album {
+  min-width: 0; padding: 14px 14px 10px; background: var(--ivory);
+  border: 1px solid var(--line); transform: rotate(1.2deg);
+  box-shadow: 6px 7px 0 var(--beige), var(--paper-shadow);
+  animation: album-arrive .9s var(--ease) both;
+}
+.album-heading { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 0 2px 12px; }
+.album-heading > .mono { color: var(--muted); font-size: 8px; max-width: 120px; }
+.album-postage { position: relative; display: flex; justify-content: flex-end; align-items: center; width: 124px; height: 52px; flex: none; pointer-events: none; }
+.postmark { width: 92px; height: 48px; color: var(--tertiary); overflow: visible; pointer-events: none; }
+.postmark text { fill: var(--muted); stroke: none; font: 7px var(--mono); letter-spacing: .03em; }
+.album-postage > .postmark { position: absolute; left: 0; top: 0; transform: rotate(-12deg); }
+.album-stamp { display: grid; place-items: center; width: 56px; height: 44px; padding: 5px; background: var(--paper); border: 1px dashed var(--taupe); color: var(--ink); transform: rotate(4deg); font: 7px/1.6 var(--mono); text-align: center; }
+.album-stamp > span { display: grid; place-items: center; width: 100%; height: 100%; border: 1px solid var(--line); }
+.portrait-photo { width: 100%; aspect-ratio: 3/4; object-fit: cover; }
+.portrait-caption { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 14px 2px 4px; font-size: 11px; color: var(--muted); }
+.portrait-caption .mono { font-size: 8px; }
+.portrait-track {
+  display: flex; overflow-x: auto; overflow-y: hidden; scroll-snap-type: x mandatory;
+  scrollbar-width: none; overscroll-behavior-x: contain; border: 1px solid var(--line);
+}
+.portrait-track::-webkit-scrollbar { display: none; }
+.portrait-track:focus-visible { outline: 2px solid var(--link); outline-offset: 3px; }
+.portrait-slide { flex: 0 0 100%; min-width: 0; scroll-snap-align: start; scroll-snap-stop: always; }
+.portrait-slide img { width: 100%; aspect-ratio: 3/4; object-fit: cover; user-select: none; }
+.portrait-slide figcaption { display: flex; justify-content: space-between; gap: 12px; padding: 12px 10px; font-size: 11px; color: var(--muted); }
+.portrait-slide figcaption .mono { font-size: 9px; white-space: nowrap; }
+.album-controls { display: flex; align-items: center; gap: 12px; margin-top: 4px; }
+.album-dots, .album-arrows { display: flex; }
+.album-dots button { width: 44px; min-height: 44px; border: 0; padding: 0; background: transparent; display: grid; place-items: center; }
+.album-dots button span { width: 6px; height: 6px; border-radius: 50%; background: var(--tertiary); transition: width .3s var(--ease), background .3s; }
+.album-dots button[aria-current=true] span { width: 20px; border-radius: 6px; background: var(--link); }
+.album-status { margin-left: auto; font-size: 10px; color: var(--muted); }
+.album-arrows { gap: 6px; margin-left: auto; }
+.album-arrows button { width: 44px; height: 44px; border: 1px solid var(--ink); background: var(--ivory); color: var(--ink); font-size: 20px; transition: background .2s, transform .25s var(--ease); }
+.album-arrows button:hover:not(:disabled) { background: var(--ivory); color: var(--link); border-color: var(--link); transform: translateY(-2px); }
+.album-arrows button:disabled { color: var(--muted); border-color: var(--line); cursor: default; }
+.album-hint { color: var(--muted); font-size: 10px; padding: 2px 0 0 8px; }
+@keyframes album-arrive { from { opacity: 0; transform: rotate(4deg) translateY(20px); } to { opacity: 1; transform: rotate(1.2deg) translateY(0); } }
+
+.kind-heading { color: var(--ink); border-bottom-color: var(--line); }
+.kind-heading::before { content: ''; width: 9px; height: 9px; border: 2px solid var(--accent); border-radius: 50%; background: transparent; flex: none; }
+.kind-count { display: grid; place-items: center; border: 1px solid var(--line); color: var(--ink); min-width: 30px; height: 26px; background: var(--ivory); }
+.project-card { background: var(--ivory); transition: transform .3s var(--ease), border-color .2s, box-shadow .3s var(--ease); }
+.project-card:hover { border-color: var(--link); box-shadow: var(--paper-shadow); transform: translateY(-4px); }
+.card-action { color: var(--link); }
+.card-index { color: var(--muted); }
+.cap-filter[aria-pressed=true] { color: var(--link); background: var(--ivory); box-shadow: inset 0 -3px var(--link); }
+.resume-section { background: var(--ivory); }
+.resume-section .section-heading .eyebrow { color: var(--muted); }
+.resume-section .section-heading h2 { color: var(--ink); }
+
+.aspiration-section { background: var(--paper); padding-block: 72px 52px; }
+.aspiration-intro { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; padding: 32px; border: 1px solid var(--line); background: var(--ivory); box-shadow: var(--paper-shadow); }
+.aspiration-intro > div + div { border-left: 1px solid var(--line); padding-left: 40px; }
+.aspiration-intro .eyebrow { display: inline-block; padding: 4px 10px; color: var(--ink); background: var(--paper); border-left: 2px solid var(--taupe); }
+.aspiration-intro .postmark { display: block; margin-top: 28px; transform: rotate(-8deg); }
+.aspiration-intro h2 { font-size: 36px; margin-top: 16px; letter-spacing: -.04em; }
+.becoming-english { font: 38px/1.1 var(--serif); color: var(--ink); margin-top: 24px; }
+.aspiration-lead { font-size: 25px; font-weight: 600; line-height: 1.7; max-width: 500px; white-space: pre-line; }
+.aspiration-description { font-size: 15px; line-height: 1.95; color: var(--muted); margin-top: 20px; max-width: 500px; }
+.aspiration-values { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 32px; margin-top: 48px; }
+.aspiration-value { border-top: 1px solid var(--line); padding-top: 20px; }
+.value-number { width: 34px; height: 34px; display: grid; place-items: center; border: 1px solid var(--taupe); border-radius: 50%; color: var(--ink); margin-bottom: 24px; transition: transform .4s var(--ease), background .3s; }
+.aspiration-value:hover .value-number { transform: rotate(-12deg); background: var(--ivory); }
+.aspiration-value .eyebrow { font-size: 9px; color: var(--muted); }
+.aspiration-value h3 { font-size: 20px; margin: 12px 0; }
+.aspiration-value > p:last-child { font-size: 14px; line-height: 1.95; color: var(--muted); }
+.closing-contact { margin-top: 56px; padding-top: 32px; border-top: 1px solid var(--line); display: flex; gap: 32px; justify-content: space-between; align-items: flex-end; }
+.closing-contact > div:first-child { min-width: 0; flex: 1; }
+.closing-contact .file-actions { flex: none; margin: 0; }
+.contact-links { gap: 12px; margin-top: 16px; }
+.contact-item { gap: 10px; text-decoration: none; min-height: 58px; padding: 10px 12px; background: var(--ivory); border: 1px solid var(--line); display: inline-flex; align-items: center; transition: border-color .25s, background .25s; max-width: 100%; }
+.contact-item small { display: block; font-size: 10px; color: var(--muted); line-height: 1.4; margin-bottom: 4px; }
+.contact-item > span:last-child { min-width: 0; }
+.contact-value { font-size: 12px; line-height: 1.5; display: block; overflow-wrap: anywhere; }
+.contact-icon { display: flex; flex: none; color: var(--ink); }
+.contact-wechat .contact-icon { color: var(--ink); }
+a.contact-item:hover { border-color: var(--link); background: var(--ivory); }
+.resume-pdf-slot .button { white-space: nowrap; }
+.resume-pdf-slot .button:disabled { cursor: default; color: var(--muted); border-color: var(--line); background: var(--paper); transform: none; }
+.resume-pdf-slot .note { font-size: 11px; margin-top: 8px; text-align: right; }
+.footer { border-top: 0; }
+
+@media (max-width:1099px) {
+  .hero { gap: 36px; }
+  .hobby-link { gap: 8px; }
+  .hobby-link strong span { display: block; margin-left: 0; font-size: 10px; }
+  .hobby-link img { width: 60px; }
+  .album-heading { gap: 6px; }
+  .album-heading > .mono { font-size: 7px; }
+  .aspiration-intro { gap: 28px; padding: 28px; }
+  .aspiration-intro > div + div { padding-left: 28px; }
+  .aspiration-intro h2 { font-size: 31px; }
+  .aspiration-lead { font-size: 22px; }
+  .closing-contact { align-items: flex-start; }
+}
+@media (max-width:767px) {
+  .hero { grid-template-columns: 1fr; gap: 36px; }
+  .hero h1 { font-size: 64px; }
+  .hero h1 > .intro-alias { font-size: 16px; margin-left: 16px; }
+  .portrait-album { grid-row: 1; max-width: 400px; width: calc(100% - 8px); margin-inline: auto; padding: 10px 10px 8px; }
+  .album-heading { padding: 0 2px 10px; }
+  .album-heading > .mono { font-size: 8px; }
+  .portrait-slide figcaption { font-size: 10px; }
+  .hobby-link { max-width: none; padding: 10px; gap: 8px; }
+  .hobby-icon { padding: 4px; }
+  .hobby-link small { font-size: 11px; }
+  .hobby-block { max-width: none; }
+  .hobby-interests { gap: 12px 24px; }
+  .hobby-link strong { font-size: 15px; }
+  .hobby-link img { width: 64px; }
+  .aspiration-section { padding-block: 44px 32px; }
+  .aspiration-intro { grid-template-columns: 1fr; gap: 24px; padding: 24px 20px; }
+  .aspiration-intro > div + div { border-left: 0; border-top: 1px solid var(--line); padding: 24px 0 0; }
+  .aspiration-intro .postmark { display: none; }
+  .aspiration-intro h2 { font-size: 26px; }
+  .becoming-english { font-size: 32px; margin-top: 20px; }
+  .aspiration-lead { font-size: 22px; }
+  .aspiration-description { font-size: 14px; margin-top: 12px; }
+  .aspiration-values { grid-template-columns: 1fr; gap: 28px; margin-top: 32px; }
+  .aspiration-value { position: relative; padding-left: 48px; padding-top: 20px; }
+  .value-number { position: absolute; left: 0; top: 20px; width: 30px; height: 30px; }
+  .aspiration-value h3 { font-size: 19px; margin: 8px 0 10px; }
+  .closing-contact { display: block; margin-top: 36px; padding-top: 28px; }
+  .contact-links { gap: 10px; }
+  .contact-item { width: 100%; padding: 12px; }
+  .contact-value { font-size: 14px; }
+  .contact-icon { margin-right: 4px; }
+  .closing-contact .file-actions { margin-top: 24px; }
+  .resume-pdf-slot .note { text-align: left; }
+}
+@media (max-width:379px) {
+  .hero h1 { font-size: 56px; }
+  .hero-statement { font-size: 18px; }
+  .album-status { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .portrait-track { scroll-behavior: auto; }
+  .portrait-album { transform: none; }
+  .project-card:hover, .hobby-link:hover, .hobby-link:hover .hobby-arrow,
+  .album-arrows button:hover:not(:disabled), .wordmark:hover > .brand-dog,
+  .aspiration-value:hover .value-number { transform: none; }
+}

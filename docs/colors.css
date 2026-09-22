@@ -1,0 +1,31 @@
+/* COCO · muted postal. Light paper, khaki and warm brown tones. */
+:root {
+  --paper: #F5F1E9;
+  --ivory: #FFFDF8;
+  --beige: #E8DECD;
+  --sand: #D8C8AD;
+  --clay: #94735B;
+  --link: #6F5A43;
+  --caramel: #965A32;
+  --khaki: #AE966A;
+  --taupe: #B69A83;
+  --olive: #929079;
+  --ink: #3E352C;
+  --muted: #756A5D;
+  --tertiary: #9D9385;
+  --line: var(--sand);
+  --accent: var(--link);
+  --paper-shadow: 0 8px 24px rgba(60, 45, 30, 0.08);
+}
+
+/* Accents belong to content, never to an arbitrary card or filter state.
+   Text stays ink / muted; links and interaction states use a deeper brown. */
+[data-kind-section="reporting"], [data-work-kind="reporting"] { --accent: var(--clay); }
+[data-kind-section="strategy"], [data-work-kind="strategy"],
+[data-kind-section="miniapp"], [data-work-kind="miniapp"],
+[data-kind-section="pet"], [data-work-kind="pet"],
+[data-kind-section="stickers"], [data-work-kind="stickers"] { --accent: var(--link); }
+[data-kind-section="paper"], [data-work-kind="paper"],
+[data-kind-section="thesis"], [data-work-kind="thesis"] { --accent: var(--olive); }
+[data-kind-section="photography"], [data-work-kind="photography"] { --accent: var(--khaki); }
+.hero, .resume-section, .resume-page, .aspiration-section { --accent: var(--taupe); }
