@@ -6,6 +6,20 @@ PORTFOLIO_DIR="$(dirname "$REPO_DIR")"
 GH_BIN="$PORTFOLIO_DIR/.portfolio-tools/bin/gh"
 export GH_CONFIG_DIR="$PORTFOLIO_DIR/.portfolio-tools/gh-config"
 
+# GitHub CLI does not automatically read the macOS system proxy.
+# Reuse the user's current HTTPS proxy without changing system settings.
+if [[ -z "${HTTPS_PROXY:-${https_proxy:-}}" ]] && command -v scutil >/dev/null; then
+  PORTFOLIO_PROXY="$(scutil --proxy | awk '
+    $1 == "HTTPSEnable" { enabled = $3 }
+    $1 == "HTTPSProxy" { host = $3 }
+    $1 == "HTTPSPort" { port = $3 }
+    END { if (enabled == 1 && host != "" && port != "") print "http://" host ":" port }
+  ')"
+  if [[ -n "$PORTFOLIO_PROXY" ]]; then
+    export HTTPS_PROXY="$PORTFOLIO_PROXY" HTTP_PROXY="$PORTFOLIO_PROXY"
+  fi
+fi
+
 if [[ ! -x "$GH_BIN" || ! -f "$PORTFOLIO_DIR/design-preview/scripts/sync_github_pages.py" ]]; then
   echo '找不到本机更新工具或源作品集，请保持桌面 portfolio 文件夹的结构。' >&2
   exit 1
