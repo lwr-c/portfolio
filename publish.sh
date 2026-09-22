@@ -46,11 +46,18 @@ echo '正在生成作品集页面……'
 python3 "$PORTFOLIO_DIR/design-preview/scripts/build_site.py"
 python3 "$PORTFOLIO_DIR/design-preview/scripts/sync_github_pages.py"
 python3 "$PORTFOLIO_DIR/design-preview/scripts/sync_github_pages.py" --check
-git add -- docs README.md publish.sh .gitignore
+git add -- docs README.md publish.sh .gitignore wrangler.jsonc
 if ! git diff --cached --quiet; then
   git commit -m "Update portfolio $(date '+%Y-%m-%d %H:%M')"
 fi
+PENDING_COMMITS="$(git rev-list --count origin/main..HEAD)"
 git push origin main
-echo '上传完成。GitHub Pages 正在自动发布，网站地址保持不变：'
-echo 'https://lwr-c.github.io/portfolio/'
-echo '发布进度：https://github.com/lwr-c/portfolio/actions'
+if [[ "$PENDING_COMMITS" -gt 0 ]]; then
+  echo '新提交已上传到 GitHub，Cloudflare 将自动部署。上传成功不等于网站已更新。'
+  echo '请确认 Cloudflare 中对应最新提交的生产部署显示绿色成功，再刷新网站。'
+else
+  echo '没有待上传的新提交，本次未触发新的 Git 自动部署。'
+fi
+echo '作品集：https://cocoportfolio.top/'
+echo 'Cloudflare 发布进度：https://dash.cloudflare.com/52b3296e1f6964201c0087ee4a57d82d/workers/services/view/twilight-boat-62a7/production/deployments'
+echo 'GitHub Pages 备用地址：https://lwr-c.github.io/portfolio/'
