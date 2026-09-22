@@ -29,6 +29,14 @@ fi
   exit 1
 }
 cd "$REPO_DIR"
+if [[ "$(git symbolic-ref --short -q HEAD || true)" != main ]]; then
+  echo '请先切换到 main 分支后再更新作品集。' >&2
+  exit 1
+fi
+if ! git diff --cached --quiet; then
+  echo '仓库有已暂存的更改，请先处理这些更改后再使用一键更新。' >&2
+  exit 1
+fi
 git fetch origin main
 if ! git merge-base --is-ancestor origin/main HEAD; then
   echo 'GitHub 上有本地尚未整合的更新，请先整合远端改动后再发布。' >&2
